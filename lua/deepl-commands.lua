@@ -71,9 +71,7 @@ return {
 			end)
 			if not status then
 				vim.notify(output, vim.log.levels.ERROR, { title = 'DeepL.vim' })
-				return
-			end
-			if cx.bang then
+			elseif cx.bang then
 				vim.fn.setline(cx.line1, output)
 			else
 				vim.fn.append(cx.line2, output)
