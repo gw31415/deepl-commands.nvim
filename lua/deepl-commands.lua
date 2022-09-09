@@ -55,7 +55,6 @@ return {
 				end,
 				prompt = 'select DeepL target language'
 			}, function(key_value)
-				vim.api.nvim_del_autocmd(fzys_id)
 				if key_value ~= nil then
 					local target = key_value[1]
 					vim.api.nvim_set_var('deepl_target_lang', target)
@@ -64,6 +63,7 @@ return {
 						vim.log.levels.INFO, { title = 'DeepL.vim' })
 				end
 			end)
+			pcall(function() vim.api.nvim_del_autocmd(fzys_id) end)
 		end, {})
 		vim.api.nvim_create_user_command('DeepL', function(cx)
 			local input = vim.fn.join(vim.fn.getline(cx.line1, cx.line2), "\n")
