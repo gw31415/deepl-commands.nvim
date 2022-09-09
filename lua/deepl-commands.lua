@@ -41,7 +41,7 @@ return {
 		}
 		vim.api.nvim_set_var('deepl_target_lang', args.default_target)
 		vim.api.nvim_create_user_command('DeepLTarget', function()
-			vim.api.nvim_create_autocmd('FileType', {
+			local fzys_id = vim.api.nvim_create_autocmd('FileType', {
 				pattern = 'fzyselect',
 				once = true,
 				callback = function()
@@ -55,6 +55,7 @@ return {
 				end,
 				prompt = 'select DeepL target language'
 			}, function(key_value)
+				vim.api.nvim_del_autocmd(fzys_id)
 				if key_value ~= nil then
 					local target = key_value[1]
 					vim.api.nvim_set_var('deepl_target_lang', target)
