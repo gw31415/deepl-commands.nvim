@@ -32,12 +32,35 @@ local targets = {
 	{ 'ZH', 'Chinese (simplified)' },
 }
 
+local function setup_authkey(path)
+	---@diagnostic disable: param-type-mismatch
+	path = vim.fn.expand(path, nil, nil)
+	local key
+	if vim.fn.filereadable(path) == 1 then
+		key = vim.fn.trim(vim.fn.readfile(path, nil, 1)[1])
+	else
+		key = vim.fn.input('`g:deepl_authkey`: ')
+		if key == '' then
+			return false
+		end
+		vim.fn.writefile({ key }, path)
+		vim.notify(vim.fn.printf(
+			'Successfully saved g:deepl_authkey at `%s`.', path),
+			vim.log.levels.INFO, {
+			title = 'DeepL.vim'
+		})
+	end
+	vim.api.nvim_set_var('deepl_authkey', key)
+	return true
+end
+
 return {
 	target_langs = targets,
 	setup = function(opts)
 		local args = {
 			selector_func = opts.selector_func or vim.ui.select,
 			default_target = opts.default_target or 'EN',
+			deepl_keyfile = opts.deepl_keyfile or '~/.ssh/deepl_authkey.txt',
 		}
 		vim.api.nvim_set_var('deepl_target_lang', args.default_target)
 		vim.api.nvim_create_user_command('DeepLTarget', function()
@@ -59,13 +82,17 @@ return {
 					local target = key_value[1]
 					vim.api.nvim_set_var('deepl_target_lang', target)
 					vim.notify(
-						('`g:deepl_target_lang` is now set to `%s`.'):format(target),
+						('`g:deepl_target_lang` is now set to "%s".'):format(target),
 						vim.log.levels.INFO, { title = 'DeepL.vim' })
 				end
 			end)
 			pcall(function() vim.api.nvim_del_autocmd(fzys_id) end)
 		end, {})
 		vim.api.nvim_create_user_command('DeepL', function(cx)
+			if (vim.g.deepl_authkey or '') == ''
+				and not setup_authkey(args.deepl_keyfile) then
+				return
+			end
 			local input = vim.fn.join(vim.fn.getline(cx.line1, cx.line2), "\n")
 			local status, output = pcall(function()
 				return vim.fn.split(vim.fn['deepl#translate'](input, vim.g.deepl_target_lang), "\n")
