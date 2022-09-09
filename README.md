@@ -1,6 +1,9 @@
 # deepl-commands.nvim
 Related commands for [gw31415/deepl.vim](https://github.com/gw31415/deepl.vim).
 
+
+https://user-images.githubusercontent.com/24710985/189399979-b97224c6-e04c-448d-ae3a-7e08e1fd78ff.mp4
+
 ## Installation and setup
 This plugin requires [gw31415/deepl.vim](https://github.com/gw31415/deepl.vim).
 
