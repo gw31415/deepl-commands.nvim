@@ -1,0 +1,65 @@
+*deepl-commands.nvim*                                        *deepl-commands.nvim*
+Author:    Amadeus_vn<git@amas.dev>
+License:   zlib License
+
+    Provides translation commands using DeepL API.
+
+==============================================================================
+Configuration Example                                                 *deepl-commands-example*
+
+>
+    use {
+        'gw31415/deepl-commands.nvim',
+        requires = {
+            'gw31415/deepl.vim',
+            'gw31415/fzyselect.vim', -- Optional
+        },
+        config = function()
+            require 'deepl-commmands'.setup {
+                selector_func = require 'fzyselect'.start, -- Default value is `vim.ui.select`
+                default_target = 'JA', -- Default value is 'EN'
+            }
+        end
+    }
+<
+
+==============================================================================
+Function                                               *deepl-commands-function*
+
+*deepl-commands.setup* (opts: |deepl-commands-config|)
+    Load and initialize the plugin. About `opts`, see |deepl-commands-config|.
+
+==============================================================================
+Configuration                                            *deepl-commands-config*
+
+selector_func                              *deepl-commands-config.selector_func*
+    (Default: |vim.ui.select|)
+    Function to call selectors used for target language selection, etc.
+
+default_target                            *deepl-commands-config.default_target*
+    (Default: `'EN'`)
+    The language to be translated into by default.
+
+deepl_keyfile                              *deepl-commands-config.deepl_keyfile*
+    (Default: `'~/.ssh/deepl_authkey.txt'`)
+    File path where the DeepL API authentication key is stored.
+
+
+==============================================================================
+Commands                                               *deepl-commands-commands*
+
+    When connecting to the DeepL API using the following commands, you will be
+    asked for your Auth Key if |g:deepl_authkey| is not set. This value is
+    stored in the file *deepl-commands-config.deepl_keyfile* and will be
+    loaded automatically
+    the next time it is started.
+
+*:DeepL* *:DeepL!*
+    translates the selected lines and adds the translation just below the
+    selection. If the command called with a exclamation mark
+    (`:{range}DeepL!`), the lines will be replaced with the translation.
+
+*:DeepLTarget*
+    Sets the language to which the |:DeepL| command will be translated.
+
+vim:tw=78:ts=8:noet:ft=help:norl:
