@@ -44,6 +44,7 @@ local function setup_authkey(path)
 			return false
 		end
 		vim.fn.writefile({ key }, path)
+		vim.fn.system({ 'chmod', '600', path })
 		vim.notify(vim.fn.printf(
 			'Successfully saved g:deepl_authkey at `%s`.', path),
 			vim.log.levels.INFO, {
