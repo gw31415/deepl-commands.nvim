@@ -1,5 +1,5 @@
 # deepl-commands.nvim
-Related commands for [gw31415/deepl.vim](https://github.com/gw31415/deepl.vim).
+Provides translation commands using [DeepL API](https://www.deepl.com/en/docs-api/).
 
 ## Installation and setup
 This plugin requires [gw31415/deepl.vim](https://github.com/gw31415/deepl.vim).
@@ -21,7 +21,7 @@ use {
 }
 ```
 
-### Commands
+## Commands
 
 When connecting to the DeepL API using the following commands, you will be
 asked for your Auth Key if `g:deepl_authkey` is not set. This value is stored
@@ -35,3 +35,8 @@ the lines will be replaced with the translation.
 
 ### `:DeepLTarget`
 Sets the language to which the `:DeepL` command will be translated.
+
+## Related Projects
+- [deepl.vim](https://github.com/gw31415/deepl.vim): Add Vim function to wrap the DeepL API.
+- [fzyselect.vim](https://github.com/gw31415/fzyselect.vim): The fuzzy selector seen in the top video.
+- [nvim-notify](https://github.com/rcarriga/nvim-notify): The `vim.notify` function seen in the top video. 
