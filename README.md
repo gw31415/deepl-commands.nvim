@@ -23,10 +23,10 @@ use {
 
 ### Commands
 
-When connecting to the DeepL API using the following command, you will be asked
-for your Auth Key if `g:deepl_authkey` is not set. This value is stored in the
-file `opts.deepl_keyfile` and will be loaded automatically the next time it is
-started.
+When connecting to the DeepL API using the following commands, you will be
+asked for your Auth Key if `g:deepl_authkey` is not set. This value is stored
+in the file `opts.deepl_keyfile` and will be loaded automatically the next time
+it is started.
 
 ### `:DeepL`
 translates the selected lines and adds the translation just below the
