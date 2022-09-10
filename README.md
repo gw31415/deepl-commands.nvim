@@ -1,8 +1,7 @@
 # deepl-commands.nvim
 Provides translation commands using [DeepL API](https://www.deepl.com/en/docs-api/).
 
-
-https://user-images.githubusercontent.com/24710985/189399979-b97224c6-e04c-448d-ae3a-7e08e1fd78ff.mp4
+https://user-images.githubusercontent.com/24710985/189486267-4e441aec-1fe3-4dfd-85a5-b42deb7470fd.mp4
 
 ## Installation and setup
 This plugin requires [gw31415/deepl.vim](https://github.com/gw31415/deepl.vim).
