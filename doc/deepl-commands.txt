@@ -5,7 +5,7 @@ License:   zlib License
     Provides translation commands using DeepL API.
 
 ==============================================================================
-Configuration Example                                                 *deepl-commands-example*
+Configuration Example                                   *deepl-commands-example*
 
 >
     use {
