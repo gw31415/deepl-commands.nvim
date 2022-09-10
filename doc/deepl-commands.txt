@@ -2,10 +2,10 @@
 Author:    Amadeus_vn<git@amas.dev>
 License:   zlib License
 
-    Related commands for |deepl.vim|.
+    Provides translation commands using DeepL API.
 
 ==============================================================================
-Example                                                 *deepl-commands-example*
+Configuration Example                                                 *deepl-commands-example*
 
 >
     use {
