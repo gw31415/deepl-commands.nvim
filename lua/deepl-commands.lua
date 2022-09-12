@@ -65,7 +65,6 @@ return {
 		vim.api.nvim_create_user_command('DeepLTarget', function()
 			local fzys_id = vim.api.nvim_create_autocmd('FileType', {
 				pattern = 'fzyselect',
-				once = true,
 				callback = function()
 					vim.fn.matchadd('Constant', [[\v^\zs.+\ze\|]])
 					vim.fn.matchadd('NonText', [[\v^.+\zs\|\ze]])
@@ -85,7 +84,7 @@ return {
 						vim.log.levels.INFO, { title = 'DeepL.vim' })
 				end
 			end)
-			pcall(function() vim.api.nvim_del_autocmd(fzys_id) end)
+			vim.api.nvim_del_autocmd(fzys_id)
 		end, {})
 		vim.api.nvim_create_user_command('DeepL', function(cx)
 			if (vim.g.deepl_authkey or '') == ''
