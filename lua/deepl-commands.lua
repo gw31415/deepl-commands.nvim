@@ -58,12 +58,10 @@ end
 return {
 	target_langs = targets,
 	setup = function(opts)
-		local args = {
-			selector_func = opts.selector_func or vim.ui.select,
-			default_target = opts.default_target or 'EN',
-			deepl_keyfile = opts.deepl_keyfile or '~/.ssh/deepl_authkey.txt',
-		}
-		vim.api.nvim_set_var('deepl_target_lang', args.default_target)
+		local selector_func = opts.selector_func or vim.ui.select
+		local default_target = opts.default_target or 'EN'
+		local deepl_keyfile = opts.deepl_keyfile or '~/.ssh/deepl_authkey.txt'
+		vim.api.nvim_set_var('deepl_target_lang', default_target)
 		vim.api.nvim_create_user_command('DeepLTarget', function()
 			local fzys_id = vim.api.nvim_create_autocmd('FileType', {
 				pattern = 'fzyselect',
@@ -73,7 +71,7 @@ return {
 					vim.fn.matchadd('NonText', [[\v^.+\zs\|\ze]])
 				end
 			})
-			args.selector_func(targets, {
+			selector_func(targets, {
 				format_item = function(key_value)
 					return ('%5s | %s'):format(key_value[1], key_value[2])
 				end,
@@ -91,7 +89,7 @@ return {
 		end, {})
 		vim.api.nvim_create_user_command('DeepL', function(cx)
 			if (vim.g.deepl_authkey or '') == ''
-				and not setup_authkey(args.deepl_keyfile) then
+				and not setup_authkey(deepl_keyfile) then
 				return
 			end
 			local input = vim.fn.join(vim.fn.getline(cx.line1, cx.line2), "\n")
@@ -106,5 +104,5 @@ return {
 				vim.fn.append(cx.line2, output)
 			end
 		end, { bang = true, range = true })
-	end,
+	end
 }
