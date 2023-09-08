@@ -1,4 +1,4 @@
-*deepl-commands.nvim*                                        *deepl-commands.nvim*
+*deepl-commands.nvim*
 Author:    Amadeus_vn<git@amas.dev>
 License:   zlib License
 
